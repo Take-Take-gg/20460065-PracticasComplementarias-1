@@ -19,7 +19,7 @@ def main():
 
 def menu_figuras():
     global op
-    while(op!=0):
+    while(op!=9):
         global contador
         contador += 1
         print("----------------------------")
@@ -97,7 +97,7 @@ def crear_triangulo(lado_a,lado_b,lado_c):
         print("se trata de un triangulo isoseles")
         tipo="Triangulo Isoseles"
         #Raiz de ((a^2 menos b^2))/4
-        altura = (((lado_a**2) - (lado_b**2))/4)**(1/2)
+        altura = ((((lado_a**2) - (lado_b**2))/4)**(1/2))
         area = area_triangulo(lado_b,altura)
         perimetro=perimetro_triangulo(lado_a,lado_b,lado_c)
 
@@ -141,10 +141,20 @@ def crear_cuadrado(lado,contador):
         }
     figuras.append(diccionario_cuadrado)
 
-#############################
+######### Separando las funciones #################
 
-def listar_clasificaciones(clasificacion):
-    
+def listar_clasificaciones(tipo):
+    for i in figuras:
+        
+        bandera =0
+        if i.get('tipo')==tipo:
+            print(i)
+            bandera +=1
+    if (bandera == 0):
+        print(f"No se encontro ningun tipo de: {tipo}")
+        
+    #Notas para guiarme
+    """
     #dicc toma el valor del diccionario
     for dicc in figuras:
         for k,v in dicc.items():
@@ -153,15 +163,115 @@ def listar_clasificaciones(clasificacion):
             print(dicc['tipo':clasificacion])
 
             if k == clasificacion:
-                print(f"UUUUUUUAaaaa{k} junto con {v}")
+                print(f"la {k} junto con {v}")
                 for k,v in dicc():
                     print(f"Tenemos a {k} junto con {v}")
-                """
+                
+                
                 for k,v in dicc,items():
                     print(f"Para cada {k} hay una {v}")"""
                 #its working
                 # print(f"Para cada {k} hay una {v}")
     
+def sumador_areas():
+
+    def suma_areas(tipo):
+        suma_areas=0.0
+        for i in figuras:
+            if i.get('tipo')== tipo:
+                suma_areas = suma_areas+i.get('area')
+                """
+                for k,v in i.items:
+                    suma_areas=0
+                suma_areas=suma_areas=0
+                """
+
+        return suma_areas 
+            
+    # Podria poner un for aqui, pero no parece que valga la pena
+    # Forma pitera de hacerlo
+    for j in ["Cuadrado","Triangulo Equilatero","Triangulo Isoseles",\
+        "Triangulo Escaleno","Circulo"]:
+    
+        if j == "Cuadrado":
+            sumador_de_areas = suma_areas(j)
+            print(f"Para {j} su suma de areas es igual a {sumador_de_areas}")
+
+        if j == "Triangulo Equilatero":
+            sumador_de_areas = suma_areas(j)
+            print(f"Para {j} su suma de areas es igual a {sumador_de_areas}")
+
+        if j == "Triangulo Isoseles":
+            sumador_de_areas = suma_areas(j)
+            print(f"Para {j} su suma de areas es igual a {sumador_de_areas}")
+
+        if j == "Triangulo Escaleno":
+            sumador_de_areas = suma_areas(j)
+            print(f"Para {j} su suma de areas es igual a {sumador_de_areas}")
+
+        if j == "Circulo":
+            sumador_de_areas = suma_areas(j)
+            print(f"Para {j} su suma de areas es igual a {sumador_de_areas}")
+
+    #Forma sencilla y facil de explicar de hacer
+    """ 
+    tipo="Cuadrado"
+    suma_areas_cuadrado=suma_areas(tipo)
+    print(f"Para {tipo} su suma de areas es igual a {suma_areas_cuadrado}")
+
+    tipo="Triangulo Equilatero"
+    suma_areas_Tri_Equi=suma_areas(tipo)
+    print(f"Para {tipo} su suma de areas es igual a {suma_areas_Tri_Equi}")
+
+    tipo="Triangulo Isoseles"
+    suma_areas_Tri_Isos=suma_areas(tipo)
+    print(f"Para {tipo} su suma de areas es igual a {suma_areas_Tri_Isos}")
+
+    tipo="Triangulo Escaleno"
+    suma_areas_Tri_Esca=suma_areas(tipo)
+    print(f"Para {tipo} su suma de areas es igual a {suma_areas_Tri_Esca}")
+
+    tipo="Circulo"
+    suma_areas_circulo=suma_areas(tipo)
+    print(f"Para {tipo} su suma de areas es igual a {suma_areas_circulo}")
+    """
+
+def sumador_perimetros():
+
+    def suma_perimetros(tipo):
+        suma_perimetros=0.0
+        for i in figuras:
+            if i.get('tipo')== tipo:
+                suma_perimetros = suma_perimetros+i.get('perimetro')
+
+        return suma_perimetros 
+            
+    # Podria poner un for aqui, pero no parece que valga la pena
+    # Forma pitera de hacerlo
+    for j in ["Cuadrado","Triangulo Equilatero","Triangulo Isoseles",\
+        "Triangulo Escaleno","Circulo"]:
+    
+        if j == "Cuadrado":
+            sumador_de_areas = suma_perimetros(j)
+            print(f"Para {j} su suma de perimetros es igual a {sumador_de_areas}")
+
+        if j == "Triangulo Equilatero":
+            sumador_de_areas = suma_perimetros(j)
+            print(f"Para {j} su suma de perimetros es igual a {sumador_de_areas}")
+
+        if j == "Triangulo Isoseles":
+            sumador_de_areas = suma_perimetros(j)
+            print(f"Para {j} su suma de perimetros es igual a {sumador_de_areas}")
+
+        if j == "Triangulo Escaleno":
+            sumador_de_areas = suma_perimetros(j)
+            print(f"Para {j} su suma de perimetros es igual a {sumador_de_areas}")
+
+        if j == "Circulo":
+            sumador_de_areas = suma_perimetros(j)
+            print(f"Para {j} su suma de perimetros es igual a {sumador_de_areas}")
+
+
 
 while(op!=0):
     main()
@@ -177,21 +287,41 @@ while(op!=0):
         print("Escriba el nombre de la figura que desea buscar")
         print("Notas: solo responderan a los siguientes nombres: ")
         print("Cuadrado, Triangulo Equilatero, Triangulo Isoseles,Triangulo Escaleno y Circulo")
+        print("Si la lista esta vacia se brincara al siguiente bloque")
+        print("----------------------------")
         clasificacion = input("Ahora si escriba: ")
         listar_clasificaciones(clasificacion)
+        print("----------------------------")
     if op == 3:
+        print("Ha seleccionado mostrar toda la lista")
         print("----------------------------")
         print(figuras)
+        print("Ahora acomodado:")
+        print("[")
+        for i in figuras:
+            print(i)
+        print("]")
+        print("----------------------------")
+
+    if op == 4:
+        print("----------------------------")
+        print("Ha seleccionado sumar las areas por clasificacion")
+        sumador_areas()
+        print("----------------------------")
+
+    if op == 5:
+        print("----------------------------")
+        print("Ha seleccionado sumar los perimetros por clasificacion")
+        sumador_perimetros()
+        print("----------------------------")
 
     #####
     if op == 6:
+        print("----------------------------")
         print("Ha decidido borrar la lista")
         figuras = []
         print("Lista vaciada con exito")
+        print("----------------------------")
     
-    
-
-    
-
 
 # agregamos diccionario a la lista figura con apped
